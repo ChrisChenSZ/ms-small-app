@@ -1,0 +1,4 @@
+<view class="container">
+    <text>活动</text>
+    <web-view src="{{url}}" class='web-view'></web-view>
+</view> 

@@ -1,0 +1,3 @@
+<!--pages/my/user/user.wxml-->
+<text>性名</text><text>{{user.username}}</text>
+<text>tel</text><text>{{user.tel}}</text>

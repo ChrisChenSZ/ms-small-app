@@ -1,0 +1,24 @@
+/* src/my/index.wxss */
+
+.input-view {
+  display: flex;
+}
+.acount-input,
+.password-input {
+  margin: 20rpx;
+  border: 1rpx solid black;
+  width: 80%;
+}
+.label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button {
+  width: 200rpx;
+}
+
+.section {
+  width: 740rpx;
+  background-color: red;
+}

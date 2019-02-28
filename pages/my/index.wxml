@@ -1,0 +1,21 @@
+<!-- input.wxml -->
+<view class="section">
+  <input placeholder="这是一个可以自动聚焦的input" auto-focus />
+</view>
+<view class="section">
+  <view class="input-view">
+    <view class="label">
+      <text class='acount'>账号</text>
+    </view>
+    <input class='acount-input' placeholder="请输入账号" focus="{{focus}}" />
+  </view>
+  <view class="input-view">
+    <view class="label">
+      <text class='password'>密码</text>
+    </view>
+    <input class='password-input' password="true" placeholder="请输入密码" />
+  </view>
+  <view class="btn-area">
+    <button bind:tap="login">登录</button>
+  </view>
+</view>

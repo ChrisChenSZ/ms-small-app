@@ -1,0 +1,58 @@
+{
+  "pages":[
+    "pages/college/index",
+    "testNavigator",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/ativity/index",
+    "pages/topic/index",
+    "pages/my/index",
+    "pages/my/user/user",
+    "pages/college/navigate/navigate",
+    "pages/college/navigate/redirect",
+    "pages/college/navigate/switchTab",
+    "component/Clist/Clist"
+  ],
+  "component":true,
+  "window":{
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "团子社团",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "black",
+    "selectedColor": "#1E80FC",
+    "backgroundColor": "white",
+    "position": "bottom",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/college/index",
+        "text": "社团",
+        "iconPath": "assets/imgs/tabbarIcons/tab.png",
+        "selectedIconPath": "assets/imgs/tabbarIcons/tab.png"
+      },
+      {
+        "pagePath": "pages/ativity/index",
+        "text": "活动",
+        "iconPath": "assets/imgs/tabbarIcons/tab.png",
+        "selectedIconPath": "assets/imgs/tabbarIcons/tab.png"
+      },
+      {
+        "pagePath": "pages/topic/index",
+        "text": "话题",
+        "iconPath": "assets/imgs/tabbarIcons/tab.png",
+        "selectedIconPath": "assets/imgs/tabbarIcons/tab.png"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的",
+        "iconPath": "assets/imgs/tabbarIcons/tab.png",
+        "selectedIconPath": "assets/imgs/tabbarIcons/tab.png"
+      }
+
+    ]
+  }
+}

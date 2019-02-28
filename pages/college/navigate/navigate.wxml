@@ -1,0 +1,5 @@
+<view class="" hover-class="none" hover-stop-propagation="false">
+  <text class="" selectable="false" space="false" decode="false">
+    跳转页面
+  </text>
+</view>
