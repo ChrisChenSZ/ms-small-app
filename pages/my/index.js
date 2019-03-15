@@ -1,3 +1,4 @@
+import api from '../../api/index.js'
 // src/my/index.js
 Page({
   /**
@@ -5,38 +6,29 @@ Page({
    */
   data: {
     focus: false,
-    inputValue: ''
+    user: {
+      username:'',
+      password: ''
+    }
   },
   login() {
-    console.log(12111);
-    wx.navigateTo({
-      url: './user/user'
-    });
+    api.user.login(this.data.user).then(res => {
+      console.log('登录', res)
+      wx.navigateTo({
+        url: './user/user'
+      });
+    }).catch (err => {
+      console.log(err)
+    })
+
   },
   bindKeyInput(e) {
+    const inputKey = `user.${e.target.id}`
     this.setData({
-      inputValue: e.detail.value
+      [inputKey]: e.detail.value
     });
+    console.log(this.data.user)
   },
-  // bindReplaceInput(e) {
-  //   const value = e.detail.value;
-  //   let pos = e.detail.cursor;
-  //   if (pos != -1) {
-  //     // 光标在中间
-  //     const left = e.detail.value.slice(0, pos);
-  //     // 计算光标的位置
-  //     pos = left.replace(/11/g, '2').length;
-  //   }
-
-  //   // 直接返回对象，可以对输入进行过滤处理，同时可以控制光标的位置
-  //   return {
-  //     value: value.replace(/11/g, '2'),
-  //     cursor: pos
-  //   };
-
-  // 或者直接返回字符串,光标在最后边
-  // return value.replace(/11/g,'2'),
-  // },
   /**
    * Lifecycle function--Called when page load
    */

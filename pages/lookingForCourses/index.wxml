@@ -1,0 +1,80 @@
+<!-- src/college/index.wxml -->
+
+
+<scroll-view class="" scroll-x="false" scroll-y="true"  style="height: 100%;" upper-threshold="50" lower-threshold="50" 
+  scroll-top="0" scroll-left="0" scroll-into-view="" scroll-with-animation="false" enable-back-to-top="false" 
+  bindscrolltoupper="scrolltoupper" bindscrolltolower="scrolltolower" bindscroll="">
+  <view class="cu-card article {{isCard?'no-card':''}}">
+  <view wx:for="{{list}}" wx:key class="cu-item shadow">
+    <view class="title">{{item.name}}</view>
+    <view class="content">
+      <image src="{{item.mainImage}}" mode="aspectFill"></image>
+      <view class="desc">
+        <view class='text-content'>{{item.detail}}</view>
+        <view>
+          <view class='cu-tag bg-red light sm round'>{{item.price}}</view>
+          <view class='cu-tag bg-green light sm round'>{{item.subtitle}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>   
+</scroll-view>
+ 
+    <!-- <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
+        <block wx:for="{{imgUrls}}">
+            <swiper-item>
+                <image src="{{item}}" class="slide-image"  />
+            </swiper-item>
+        </block>
+    </swiper> -->
+    <!-- <button bindtap="changeIndicatorDots">indicator-dots</button>
+    <button bindtap="changeAutoplay">autoplay</button>
+    <slider bindchange="intervalChange" show-value min="500" max="2000" />
+    interval
+    <slider bindchange="durationChange" show-value min="1000" max="10000" />
+    duration -->
+
+   <!-- <view class="cu-bar bg-white margin-top">
+  </view>
+  <view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white justify-end">
+        <view class='content'></view>
+        <view class='action' bindtap='hideModal'>
+          <text class='icon-close text-red'></text>
+        </view>
+      </view>
+      <view class='padding-xl'>获取用户信息</view>
+      <view class="cu-bar bg-white justify-end">
+        <view class='action'>
+          <button class='cu-btn line-green text-green' bindtap='hideModal'>取消</button>
+          <button class='cu-btn bg-green margin-left' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">确定</button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button>
+
+
+  <open-data type="userAvatarUrl"></open-data>
+  <open-data type="userNickName"></open-data>
+  <component-tag-name inner-text="Some text">
+    <text>abcfdsfdsfs</text>
+  </component-tag-name>
+  <text>没有社团</text>
+  <view class="btn-area">
+    <navigator url="./navigate/navigate?title=navigate" hover-class="navigator-hover">
+      跳转到新页面
+    </navigator>
+    <navigator url="./navigate/redirect?title=redirect" open-type="redirect" hover-class="other-navigator-hover">
+      在当前页打开
+    </navigator>
+    <navigator url="../ativity/index" open-type="switchTab" hover-class="other-navigator-hover">
+      切换 Tab
+    </navigator>
+    <navigator target="miniProgram" open-type="navigate" app-id="" path="" extra-data="" version="release">
+      打开绑定的小程序
+    </navigator>
+  </view> -->
+<!-- </View> -->

@@ -1,48 +1,53 @@
 {
   "pages":[
-    "pages/college/index",
+    "pages/verticalnav/verticalnav",
+    "pages/lookingForCourses/index",
     "testNavigator",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/ativity/index",
-    "pages/topic/index",
+    "pages/lookingForTeacher/index",
+    "pages/car/index",
     "pages/my/index",
     "pages/my/user/user",
-    "pages/college/navigate/navigate",
-    "pages/college/navigate/redirect",
-    "pages/college/navigate/switchTab",
-    "component/Clist/Clist"
+    "pages/lookingForCourses/navigate/navigate",
+    "pages/lookingForCourses/navigate/redirect",
+    "pages/lookingForCourses/navigate/switchTab"
   ],
-  "component":true,
   "window":{
     "enablePullDownRefresh": true,
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "团子社团",
+    "navigationBarTitleText": "明师教育",
     "navigationBarTextStyle":"black"
   },
   "tabBar": {
-    "color": "black",
+    "color": "#333",
     "selectedColor": "#1E80FC",
-    "backgroundColor": "white",
+    "backgroundColor": "#ffffff",
     "position": "bottom",
     "borderStyle": "black",
     "list": [
       {
-        "pagePath": "pages/college/index",
-        "text": "社团",
+        "pagePath": "pages/verticalnav/verticalnav",
+        "text": "首页",
         "iconPath": "assets/imgs/tabbarIcons/tab.png",
         "selectedIconPath": "assets/imgs/tabbarIcons/tab.png"
       },
       {
-        "pagePath": "pages/ativity/index",
-        "text": "活动",
+        "pagePath": "pages/lookingForCourses/index",
+        "text": "找课程",
         "iconPath": "assets/imgs/tabbarIcons/tab.png",
         "selectedIconPath": "assets/imgs/tabbarIcons/tab.png"
       },
       {
-        "pagePath": "pages/topic/index",
-        "text": "话题",
+        "pagePath": "pages/lookingForTeacher/index",
+        "text": "找老师",
+        "iconPath": "assets/imgs/tabbarIcons/tab.png",
+        "selectedIconPath": "assets/imgs/tabbarIcons/tab.png"
+      },
+      {
+        "pagePath": "pages/car/index",
+        "text": "购物车",
         "iconPath": "assets/imgs/tabbarIcons/tab.png",
         "selectedIconPath": "assets/imgs/tabbarIcons/tab.png"
       },

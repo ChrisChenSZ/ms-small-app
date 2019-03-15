@@ -1,8 +1,0 @@
-/* src/college/index.wxss */
-.container{
-  display: flex;
-  justify-content: flex-start;
-  background-color: yellow;
-  width: 100%;
-  height: 100%;
-}
