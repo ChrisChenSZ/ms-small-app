@@ -1,0 +1,31 @@
+<!-- component/Scroll/Scroll.wxml -->
+<scroll-view class="ms-scroll" scroll-x="false" scroll-y="true" style="height:100%;" upper-threshold="-50" lower-threshold="50" scroll-top="0" scroll-left="0" scroll-into-view="" scroll-with-animation="true" enable-back-to-top="false" bindscrolltoupper="scrolltoupper" bindscrolltolower="scrolltolower" bindscroll="">
+    <!-- <view class="weui-loadmore" wx:if='{{isRefreshing}}'>
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore-tips">正在刷新...</view>
+    </view> -->
+    <slot></slot>
+    <view wx:if='{{!isRefreshing}}' class="weui-loadmore">
+        <view wx:if='{{isLoadingMoreData}}'>
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore-tips">正在加载更多...</view>
+        </view>
+        <view wx:elif='{{hasMoreData}}'>
+            <view class="weui-loadmore-tips" bindtap='onReachBottom'>点击加载更多</view>
+        </view>
+        <view wx:else>
+            <view class="weui-loadmore-tips">没有更多内容啦</view>
+        </view>
+    </view>
+    <!-- <view class="cu-bar bg-white margin-top">
+        <view class='action'>
+            <text class='icon-title text-blue'></text>
+            弹框加载
+        </view>
+    </view> -->
+    <view class='cu-load load-modal' wx:if="{{loadModal}}">
+        <view class='icon-emojifill text-orange'></view>
+        <!-- <image src='/images/logo.png' class='png' mode='aspectFit'></image> -->
+       <view class='gray-text'>加载中...</view>
+    </view>
+</scroll-view>

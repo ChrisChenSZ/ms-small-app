@@ -1,5 +1,6 @@
 {    
   "usingComponents": {
-    "component-tag-name": "/component/Clist/Clist"
+    "component-tag-name": "/component/Clist/Clist",
+    "ms-scroll":"/component/Scroll/Scroll"
   }
 }

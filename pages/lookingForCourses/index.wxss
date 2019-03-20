@@ -7,8 +7,11 @@
   height: 100%;
 }
 
-swiper {
- height:360rpx;  
+#msScroll {
+  height:100%;
+}
+.screen-swiper  {
+ min-height:260rpx;  
 }
 
 .slide-image {

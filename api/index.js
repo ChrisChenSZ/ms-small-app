@@ -7,6 +7,11 @@ export default {
             return axios.get(`/code/${code}`)
         }
     },
+    banner: {
+      list () {
+          return axios.get('/banner')
+      }  
+    },
     user: {
         login (data) {
          return axios.post('/login',data)

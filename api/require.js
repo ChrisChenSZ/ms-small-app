@@ -4,6 +4,8 @@ let defalutUrl = 'http://dev.quliansg.com:3000'
 // develop
 defalutUrl = 'http://dev.quliansg.com:18765'
 defalutUrl = 'http://127.0.0.1:7001'
+defalutUrl = 'http://192.168.6.232:7001'
+// defalutUrl = 'http://192.168.6.232:7001'
 
 // test
 // url = 'http://test.quliansg.com:18765'

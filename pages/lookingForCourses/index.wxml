@@ -1,41 +1,83 @@
 <!-- src/college/index.wxml -->
-
-
-<scroll-view class="" scroll-x="false" scroll-y="true"  style="height: 100%;" upper-threshold="50" lower-threshold="50" 
-  scroll-top="0" scroll-left="0" scroll-into-view="" scroll-with-animation="false" enable-back-to-top="false" 
-  bindscrolltoupper="scrolltoupper" bindscrolltolower="scrolltolower" bindscroll="">
-  <view class="cu-card article {{isCard?'no-card':''}}">
-  <view wx:for="{{list}}" wx:key class="cu-item shadow">
-    <view class="title">{{item.name}}</view>
-    <view class="content">
-      <image src="{{item.mainImage}}" mode="aspectFill"></image>
-      <view class="desc">
-        <view class='text-content'>{{item.detail}}</view>
-        <view>
-          <view class='cu-tag bg-red light sm round'>{{item.price}}</view>
-          <view class='cu-tag bg-green light sm round'>{{item.subtitle}}</view>
+<scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+  <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{categoryNav}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+    {{item}}
+  </view>
+</scroll-view>
+<view style="display:{{ TabCur === 0 ? 'block;': 'none;'}};height:calc(100% - 45px)" hover-class="none" hover-stop-propagation="false">
+  <!-- <scroll-view class="" scroll-x="false" scroll-y="true" style="height: 810rpx;" upper-threshold="50" lower-threshold="50" scroll-top="0" scroll-left="0" scroll-into-view="" scroll-with-animation="true" enable-back-to-top="false" bindscrolltoupper="scrolltoupper" bindscrolltolower="scrolltolower" bindscroll="">
+    <view class="cu-card article {{isCard?'no-card':''}}">
+      <view wx:for="{{list}}" wx:key class="cu-item shadow">
+        <view class="title">{{item.name}}</view>
+        <view class="content">
+          <image src="{{item.mainImage}}" mode="aspectFill"></image>
+          <view class="desc">
+            <view class='text-content'>{{item.detail}}</view>
+            <view>
+              <view class='cu-tag bg-red light sm round'>{{item.price}}</view>
+              <view class='cu-tag bg-green light sm round'>{{item.subtitle}}</view>
+            </view>
+          </view>
         </view>
       </view>
     </view>
-  </view>
-</view>   
-</scroll-view>
- 
-    <!-- <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
+  </scroll-view> -->
+  <ms-scroll bind:scrolltoupper="scrolltoupper" bind:scrolltolower="scrolltolower" id="msScroll">
+    <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+      <swiper-item wx:for="{{imgUrls}}" wx:key>
+        <image src="{{item.url}}" mode='aspectFill'></image>
+      </swiper-item>
+    </swiper>
+    <view class="cu-bar bg-white search" style="top:{{CustomBar}}px;">
+      <view class='search-form round'>
+        <text class="icon-search"></text>
+        <input type="text" placeholder="输入搜索的关键词" confirm-type="search"></input>
+      </view>
+      <view class='action'>
+        <button class='cu-btn bg-gradual-green shadow-blur round'>搜索</button>
+      </view>
+    </view>
+    <scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{coursesCategoryNavScrollLeft}}">
+      <view class="cu-item {{index==navCur?'text-blue':''}}" wx:for="{{coursesCategoryNav}}" wx:key bindtap='coursesCategoryNavSelect' data-id="{{index}}">
+        {{item}}
+      </view>
+    </scroll-view>
+     <!--列表页面 -->
+    <view class="cu-card article {{isCard?'no-card':''}}" wx:for="{{coursesCategoryNav}}" wx:for-index="categoryIndex" wx:for-item="categoryItem" wx:key="categoryIndex">
+     
+      <view wx:for="{{lists[categoryIndex].list}}" wx:key class="cu-item shadow" style="display:{{ navCur === categoryIndex ? 'block;': 'none;'}}">
+        <view class="title">{{item.name}}</view>
+        <view class="content">
+          <image src="{{item.mainImage}}" mode="aspectFill"></image>
+          <view class="desc">
+            <view class='text-content'>{{item.detail}}</view>
+            <view>
+              <view class='cu-tag bg-red light sm round'>{{item.price}}</view>
+              <view class='cu-tag bg-green light sm round'>{{item.subtitle}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </ms-scroll>
+</view>
+<!-- <view class="" hover-class="none" hover-stop-propagation="false">
+  <text class="" selectable="false" space="false" decode="false">切换的不同页面</text>
+</view> -->
+<!-- <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
         <block wx:for="{{imgUrls}}">
             <swiper-item>
                 <image src="{{item}}" class="slide-image"  />
             </swiper-item>
         </block>
     </swiper> -->
-    <!-- <button bindtap="changeIndicatorDots">indicator-dots</button>
+<!-- <button bindtap="changeIndicatorDots">indicator-dots</button>
     <button bindtap="changeAutoplay">autoplay</button>
     <slider bindchange="intervalChange" show-value min="500" max="2000" />
     interval
     <slider bindchange="durationChange" show-value min="1000" max="10000" />
     duration -->
-
-   <!-- <view class="cu-bar bg-white margin-top">
+<!-- <view class="cu-bar bg-white margin-top">
   </view>
   <view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
     <view class="cu-dialog">

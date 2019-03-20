@@ -6,20 +6,40 @@ Page({
    * Page initial data
    */
   data: {
+    categoryNav:['同步课','专题课','讲座','素养课','1对1','学币','讲座','讲座','讲座','讲座','讲座','讲座','讲座','讲座',],
+    coursesCategoryNav:['全部','数学','语文','编程','英语(Amazing English)'],
+    TabCur:0,
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
-    list: [],
+    lists: [],
+    isCard:true,
     query: {pageSize:6, pageNum:1},
+    navCur: 0,
     // 轮播图
     imgUrls: [
-      "http://b.hiphotos.baidu.com/image/pic/item/11385343fbf2b2114a65cd70c48065380cd78e41.jpg",
-      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1552277593383&di=eb64883db8bf951cccf9018b9b977c0f&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Ffc1f4134970a304e210531d0dfc8a786c9175cf0.jpg",
-      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1552277593382&di=6e464028f1e0d01a1079e38c9c7bfbbc&imgtype=0&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F962bd40735fae6cd9456784901b30f2442a70f3c.jpg"
     ],
     indicatorDots: true,
     autoplay: true,
     interval: 5000,
     duration: 1000
+  },
+  tabSelect(e) {
+    console.log(e);
+    this.setData({
+      TabCur: e.currentTarget.dataset.id,
+      scrollLeft: (e.currentTarget.dataset.id-1)*60
+    })
+  },
+  coursesCategoryNavSelect(e) {
+    const id = e.currentTarget.dataset.id 
+    const {lists,curNav} = this.data
+    const query = lists[curNav] && lists[curNav].query || {pageSize:6, pageNum:1}
+    this.getAllList(id)
+    this.setData({
+      navCur: id,
+      coursesCategoryNavScrollLeft: (e.currentTarget.dataset.id-1)*60,
+      query 
+    })
   },
   isCard(e) {
     this.setData({
@@ -105,32 +125,61 @@ Page({
   initData() {
     this.setNavigationBarTitle();
     this.defaultUserInfo();
-    this.getList();
+    this.getBannerList()
+    this.getAllList();
   },
-  getList() {
-    api.product.list(this.data.query).then(res => {
-     
-      const newList = this.data.list.concat(res.data.data.list)
+  getBannerList() {
+    api.banner.list().then(res => {
       this.setData({
-        list: newList
-      });
-      console.log(this.data.list);
+        imgUrls:res.data.data.banner
+      })
+    })
+  },
+  getAllList(id) {
+    if(id) {
+      if(this.data.lists[id]) {
+        return
+      } else {
+        this.getAllApiList(id)
+      }
+    }else {
+      this.getAllApiList()
+    }
+  },
+  getAllApiList (categoryId) {
+    const query = categoryId ? {...this.data.query,categoryId} : this.data.query
+    api.product.list(query).then(res => {
+      const allLists = this.data.lists
+      allLists.push({query,list:res.data.data.list})
+      this.setData({lists: allLists});
     });
   },
 
   scrolltoupper () {
     console.log('顶部刷新')
+    console.log(this.selectComponent('#msScroll').data.isRefreshing)
+    setTimeout( () => {
+      this.selectComponent('#msScroll').setData({
+        isRefreshing:false
+      })
+    }, 1000)
   },
 
-  scrolltolower () {
-    console.log('底部刷新')
+  scrolltolower (e) {
     this.setData({
-      ['query.pageNum']:++this.data.query.pageNum
+      [`lists[${this.data.navCur}].query.pageNum`]:++this.data.lists[this.data.navCur].query.pageNum
     })
-    console.log(this.data.query.pageNum)
-    this.getList()
+    this.pushList()
   },
-
+  pushList() {
+    const {navCur,lists} = this.data
+    const currentQuery = lists[navCur].query  
+    const query = navCur ? {...currentQuery,categoryId:navCur} : currentQuery
+    api.product.list(query).then(res => {
+      const newList = lists[navCur].list.concat(res.data.data.list)
+      this.setData({[`lists[${navCur}].list`]: newList})
+    });
+  },
   setNavigationBarTitle() {
     wx.setNavigationBarTitle({
       title: "找课程",
@@ -173,7 +222,9 @@ Page({
   /**
    * Page event handler function--Called when user drop down
    */
-  onPullDownRefresh: function() {},
+  onPullDownRefresh: function() {
+    wx.stopPullDownRefresh()
+  },
 
   /**
    * Called when page reach bottom
